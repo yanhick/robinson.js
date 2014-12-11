@@ -4,12 +4,13 @@
   "description": "a port of robinson to node.js",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r"
+    "test": "PATH=$PATH:./node_modules/.bin mocha test --recursive"
   },
   "author": "Yannick Dominguez",
   "license": "MIT",
-  "dependencies": {
-    "mocha": "^2.0.1",
-    "sinon": "^1.12.1"
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.0.1"
   }
 }
