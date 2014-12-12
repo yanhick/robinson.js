@@ -12,7 +12,20 @@ describe('html parser', function () {
             nodeType: 1
         });
     });
-    it('should parse nested tags');
+    it('should parse nested tags', function () {
+        var nodes = HTMLParser().parse('<html><body></body></html>');
+        expect(nodes).to.eql({
+            nodeName: 'html',
+            attributes: [],
+            nodeType: 1,
+            children: [{
+                nodeName: 'body',
+                attributes: [],
+                nodeType: 1,
+                children: []
+            }]
+        });
+    });
     it('should parse text nodes');
     it('should parse attributes with quoted values');
 });
