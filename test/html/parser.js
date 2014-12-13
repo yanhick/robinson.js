@@ -39,5 +39,15 @@ describe('html parser', function () {
             }]
         });
     });
-    it('should parse attributes with quoted values');
+    it('should parse attributes with quoted values', function () {
+        var nodes = HTMLParser().parse('<html lang="us"></html>');
+        expect(nodes).to.eql({
+            nodeName: 'html',
+            attributes: {
+                lang: 'us'
+            },
+            nodeType: 1,
+            children: []
+        });
+    });
 });
