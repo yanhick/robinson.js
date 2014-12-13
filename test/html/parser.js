@@ -8,7 +8,7 @@ describe('html parser', function () {
         expect(nodes).to.eql({
             children: [],
             nodeName: 'html',
-            attributes: [],
+            attributes: {},
             nodeType: 1
         });
     });
@@ -16,11 +16,11 @@ describe('html parser', function () {
         var nodes = HTMLParser().parse('<html><body></body></html>');
         expect(nodes).to.eql({
             nodeName: 'html',
-            attributes: [],
+            attributes: {},
             nodeType: 1,
             children: [{
                 nodeName: 'body',
-                attributes: [],
+                attributes: {},
                 nodeType: 1,
                 children: []
             }]
@@ -30,7 +30,7 @@ describe('html parser', function () {
         var nodes = HTMLParser().parse('<html>hello</html>');
         expect(nodes).to.eql({
             nodeName: 'html',
-            attributes: [],
+            attributes: {},
             nodeType: 1,
             children: [{
                 text: 'hello',
