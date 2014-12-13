@@ -26,6 +26,18 @@ describe('html parser', function () {
             }]
         });
     });
-    it('should parse text nodes');
+    it('should parse text nodes', function () {
+        var nodes = HTMLParser().parse('<html>hello</html>');
+        expect(nodes).to.eql({
+            nodeName: 'html',
+            attributes: [],
+            nodeType: 1,
+            children: [{
+                text: 'hello',
+                nodeType: 3,
+                children: []
+            }]
+        });
+    });
     it('should parse attributes with quoted values');
 });
