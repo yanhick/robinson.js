@@ -7,7 +7,7 @@ describe('html parser', function () {
         var nodes = HTMLParser().parse('<html></html>');
         expect(nodes).to.eql({
             children: [],
-            nodeName: 'html',
+            tagName: 'html',
             attributes: {},
             nodeType: 1
         });
@@ -15,11 +15,11 @@ describe('html parser', function () {
     it('should parse nested tags', function () {
         var nodes = HTMLParser().parse('<html><body></body></html>');
         expect(nodes).to.eql({
-            nodeName: 'html',
+            tagName: 'html',
             attributes: {},
             nodeType: 1,
             children: [{
-                nodeName: 'body',
+                tagName: 'body',
                 attributes: {},
                 nodeType: 1,
                 children: []
@@ -29,7 +29,7 @@ describe('html parser', function () {
     it('should parse text nodes', function () {
         var nodes = HTMLParser().parse('<html>hello</html>');
         expect(nodes).to.eql({
-            nodeName: 'html',
+            tagName: 'html',
             attributes: {},
             nodeType: 1,
             children: [{
@@ -42,7 +42,7 @@ describe('html parser', function () {
     it('should parse attributes with quoted values', function () {
         var nodes = HTMLParser().parse('<html lang="us"></html>');
         expect(nodes).to.eql({
-            nodeName: 'html',
+            tagName: 'html',
             attributes: {
                 lang: 'us'
             },

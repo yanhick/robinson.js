@@ -7,13 +7,13 @@ var styleTree = require('../../lib/style/style-tree');
 describe('style tree', function () {
     it('should style a dom node', function () {
         var rootElement = new HTMLParser().parse('<html></html>');
-        var stylesheet = new CSSParser().parse('{foo: bar;}');
+        var stylesheet = new CSSParser().parse('html {foo: bar;}');
         var styledTree = styleTree(rootElement, stylesheet);
 
         expect(styledTree.node).to.eql({
             attributes: {},
             children: [],
-            nodeName: 'html',
+            tagName: 'html',
             nodeType: 1
         });
 
