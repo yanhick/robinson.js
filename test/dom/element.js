@@ -12,7 +12,7 @@ describe('element', function () {
             children: [],
             attributes: {foo: 'bar'},
             nodeType: 1,
-            nodeName: 'div'
+            tagName: 'div'
         });
     });
 });
