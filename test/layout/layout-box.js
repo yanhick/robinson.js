@@ -36,6 +36,31 @@ describe('layout box', function () {
         });
     });
 
+    describe('#getInlineContainer', function () {
+        it('should return the layout box for inline box', function () {
+            var boxType = BoxType.Inline('foo');
+            var layoutBox = new LayoutBox(boxType);
+
+            expect(layoutBox.getInlineContainer()).to.eql(layoutBox);
+        });
+
+        it('should return the layout box for anonymous box', function () {
+            var boxType = BoxType.Anonymous();
+            var layoutBox = new LayoutBox(boxType);
+
+            expect(layoutBox.getInlineContainer()).to.eql(layoutBox);
+        });
+
+        it('should reuturn the last anonymous box for a block box', function () {
+            var boxType = BoxType.Block('foo');
+            var children = [createLayoutBox(), createLayoutBox()];
+            var layoutBox = new LayoutBox(boxType, undefined, children);
+
+            var inlineContainer = layoutBox.getInlineContainer();
+            expect(layoutBox.children[2]).to.eql(inlineContainer);
+        });
+    });
+
     describe('#calculateBlockHeight', function () {
         it('should set the actual block height if provided', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
@@ -148,7 +173,8 @@ describe('layout box', function () {
     });
 });
 
-function createLayoutBox (boxType, dimensions) {
+function createLayoutBox (boxType, dimensions, children) {
+    children = children || [];
     var element = new ElementNode('div', {foo: 'bar'}, []);
     var styledNode = new StyledNode(element, {
         display: new Value().Keyword('block')
@@ -158,5 +184,5 @@ function createLayoutBox (boxType, dimensions) {
     var edge = new EdgeSize(10, 10, 10, 10);
     dimensions = dimensions || new Dimensions(rect, edge, edge, edge);
 
-    return new LayoutBox(boxType, dimensions, []);
+    return new LayoutBox(boxType, dimensions, children);
 }
