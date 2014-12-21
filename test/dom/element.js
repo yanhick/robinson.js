@@ -15,6 +15,23 @@ describe('element', function () {
         expect(elementNode.tagName).to.eql('div');
     });
 
+    describe('#id', function () {
+        it('should return the element id', function () {
+            var elementNode = new ElementNode('div',
+                                              {id: 'my-id'},
+                                             []);
+
+            expect(elementNode.id()).to.eql('my-id');
+        });
+        it('should return null if the element has no id', function () {
+            var elementNode = new ElementNode('div',
+                                              {foo: 'bar'},
+                                             []);
+
+            expect(elementNode.id()).to.be.null;
+        });
+    });
+
         });
     });
 });
