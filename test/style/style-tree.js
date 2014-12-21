@@ -19,6 +19,14 @@ describe('style tree', function () {
         expect(styledTree.specifiedValues.foo.value).to.eql('bar');
     });
 
+    it('should ignore node not matching a selector', function () {
+        var rootElement = new HTMLParser().parse('<html></html>');
+        var stylesheet = new CSSParser().parse('.not-matched {foo: bar;}');
+        var styledTree = styleTree(rootElement, stylesheet);
+
+        expect(styledTree.specifiedValues.foo).to.not.exists;
+    });
+
     it('should style a dom tree');
     it('should match dom nodes with css rules');
     it('should take care of property specificity');
