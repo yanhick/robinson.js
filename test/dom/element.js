@@ -32,6 +32,20 @@ describe('element', function () {
         });
     });
 
+    describe('#classes', function () {
+        it('should return the element classes', function () {
+            var elementNode = new ElementNode('div',
+                                              {'class': 'my-class my-other-class'},
+                                             []);
+
+            expect(elementNode.classes()).to.eql(['my-class', 'my-other-class']);
+        });
+        it('should return an empty list if the element has no classes', function () {
+            var elementNode = new ElementNode('div',
+                                              {},
+                                             []);
+
+            expect(elementNode.classes()).to.eql([]);
         });
     });
 });
