@@ -22,6 +22,27 @@ describe('css parser', function () {
         expect(stylesheet.rules[0].declarations[0].value).to.have.property('toPx');
     });
 
+    it('should parse css with newlines', function () {
+        var css = 'div {\n';
+        css += 'foo: bar;\n';
+        css += '}';
+
+        var stylesheet = new CSSParser().parse(css);
+        expect(stylesheet.rules).to.exists;
+        expect(stylesheet.rules).have.length(1);
+        expect(stylesheet.rules[0].selectors[0].type).to.eql('simple');
+        expect(stylesheet.rules[0].selectors[0].value).to.eql({
+            tagName: 'div',
+            id: null,
+            className: []
+        });
+        expect(stylesheet.rules[0].declarations[0]).to.have.property('name', 'foo');
+        expect(stylesheet.rules[0].declarations[0]).to.have.property('value');
+        expect(stylesheet.rules[0].declarations[0].value).to.have.property('type', 'keyword');
+        expect(stylesheet.rules[0].declarations[0].value).to.have.property('value', 'bar');
+        expect(stylesheet.rules[0].declarations[0].value).to.have.property('toPx');
+    });
+
     it('should parse id selector', function () {
         var stylesheet = new CSSParser().parse('#my-id {foo:bar;}');
 
