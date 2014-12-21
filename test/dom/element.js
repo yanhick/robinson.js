@@ -8,11 +8,13 @@ describe('element', function () {
         var elementNode = new ElementNode('div',
                                           {foo: 'bar'},
                                          []);
-        expect(elementNode).to.eql({
-            children: [],
-            attributes: {foo: 'bar'},
-            nodeType: 1,
-            tagName: 'div'
+
+        expect(elementNode.children).to.eql([]);
+        expect(elementNode.attributes).to.eql({foo: 'bar'});
+        expect(elementNode.nodeType).to.eql(1);
+        expect(elementNode.tagName).to.eql('div');
+    });
+
         });
     });
 });
