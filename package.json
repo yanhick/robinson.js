@@ -9,7 +9,8 @@
   "author": "Yannick Dominguez",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^2.4.1"
+    "lodash": "^2.4.1",
+    "png": "^3.0.3"
   },
   "devDependencies": {
     "chai": "^1.10.0",
