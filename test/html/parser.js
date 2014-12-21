@@ -12,6 +12,15 @@ describe('html parser', function () {
             nodeType: 1
         });
     });
+    it('should parse html with newlines', function () {
+        var nodes = HTMLParser().parse('<html>\n</html>');
+        expect(nodes).to.eql({
+            children: [],
+            tagName: 'html',
+            attributes: {},
+            nodeType: 1
+        });
+    });
     it('should parse nested tags', function () {
         var nodes = HTMLParser().parse('<html><body></body></html>');
         expect(nodes).to.eql({
