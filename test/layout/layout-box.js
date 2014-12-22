@@ -51,7 +51,15 @@ describe('layout box', function () {
             expect(layoutBox.getInlineContainer()).to.eql(layoutBox);
         });
 
-        it('should reuturn the last anonymous box for a block box', function () {
+        it('should create and return an anonymous block if there is none for a block box', function () {
+            var boxType = BoxType.Block('foo');
+            var layoutBox = new LayoutBox(boxType);
+
+            var inlineContainer = layoutBox.getInlineContainer();
+            expect(inlineContainer.boxType.type === 'anonymous');
+        });
+
+        it('should return the last anonymous box for a block box', function () {
             var boxType = BoxType.Block('foo');
             var children = [createLayoutBox(), createLayoutBox()];
             var layoutBox = new LayoutBox(boxType, undefined, children);
