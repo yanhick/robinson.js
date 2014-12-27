@@ -146,7 +146,34 @@ describe('layout box', function () {
             expect(layoutBox.dimensions.content.width).to.eql(50);
         });
 
-        it('should set the block width with auto width');
+        it('should set the block width with auto width', function () {
+            var edgeSize = new EdgeSize(0, 0, 0, 0);
+            var dimensions = new Dimensions(
+                new Rect(0, 0, 0, 0),
+                edgeSize,
+                edgeSize,
+                edgeSize
+            );
+            var element = new ElementNode('div', {foo: 'bar'}, []);
+            var styledNode = new StyledNode(element, {
+                display: 'block'
+            }, []);
+            var boxType = BoxType.Block(styledNode);
+            var layoutBox = createLayoutBox(boxType, dimensions);
+
+            var containingEdgeSize = new EdgeSize(0, 0, 0, 0);
+            var containingDimensions = new Dimensions(
+                new Rect(0, 0, 200, 100),
+                containingEdgeSize,
+                containingEdgeSize,
+                containingEdgeSize
+            );
+            var containingLayoutBox = createLayoutBox(undefined, containingDimensions);
+
+            layoutBox.calculateBlockWidth(containingLayoutBox.dimensions);
+
+            expect(layoutBox.dimensions.content.width).to.eql(200);
+        });
         it('should set the block width with auto margins');
     });
 
