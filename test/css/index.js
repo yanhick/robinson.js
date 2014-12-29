@@ -1,7 +1,7 @@
 
 var expect = require('chai').expect;
 
-var CSSParser = require('../../lib/css/parser');
+var CSSParser = require('../../lib/css');
 
 describe('css parser', function () {
     it('should parse name selector', function () {
