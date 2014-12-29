@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/yanhick/robinson.js.svg)](https://travis-ci.org/yanhick/robinson.js)
+[![Coverage Status](https://img.shields.io/coveralls/yanhick/robinson.js.svg)](https://coveralls.io/r/yanhick/robinson.js)
 
 #Robinson.js
 
