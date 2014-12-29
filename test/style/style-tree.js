@@ -30,6 +30,20 @@ describe('style tree', function () {
         expect(styledTree.specifiedValues.foo).to.not.exists;
     });
 
+    it('should style a dom tree with multiple selectors', function () {
+        var rootElement = new HTMLParser().parse('<html class="my-class" id="my-id"></html>');
+        var stylesheet = new CSSParser().parse('html.my-class#my-id {foo: bar;}');
+        var styledTree = styleTree(rootElement, stylesheet);
+
+        expect(styledTree.node.children).to.eql([]);
+        expect(styledTree.node.attributes).to.eql({'class' : 'my-class', 'id': 'my-id'});
+        expect(styledTree.node.nodeType).to.eql(1);
+        expect(styledTree.node.tagName).to.eql('html');
+
+        expect(styledTree.specifiedValues.foo.type).to.eql('keyword');
+        expect(styledTree.specifiedValues.foo.value).to.eql('bar');
+    });
+
     it('should style a dom tree');
     it('should match dom nodes with css rules');
     it('should take care of property specificity');
