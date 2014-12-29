@@ -6,7 +6,8 @@
   "scripts": {
     "test": "PATH=$PATH:./node_modules/.bin mocha test --recursive",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- test --recursive -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "test-run": "node index && [ -f output.png ]"
+    "test-run": "node index && [ -f output.png ]",
+    "lint": "jshint lib"
   },
   "author": "Yannick Dominguez",
   "license": "MIT",
