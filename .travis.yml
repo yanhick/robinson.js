@@ -3,7 +3,9 @@ node_js:
     - "0.10"
 before_script:
     - npm install -g istanbul
+    - npm install -g jshint
 script:
+    - npm run-script lint
     - npm test
     - npm run-script test-run
 after_success:
