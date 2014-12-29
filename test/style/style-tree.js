@@ -1,8 +1,8 @@
 
 var expect = require('chai').expect;
-var HTMLParser = require('../../lib/html/parser');
-var CSSParser = require('../../lib/css/parser');
-var styleTree = require('../../lib/style/style-tree');
+var HTMLParser = require('../../lib/html');
+var CSSParser = require('../../lib/css');
+var styleTree = require('../../lib/style');
 
 describe('style tree', function () {
     it('should style a dom node', function () {

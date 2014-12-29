@@ -1,9 +1,9 @@
 
 var expect = require('chai').expect;
-var HTMLParser = require('../../lib/html/parser');
-var CSSParser = require('../../lib/css/parser');
-var styleTree = require('../../lib/style/style-tree');
-var layoutTree = require('../../lib/layout/layout-tree');
+var HTMLParser = require('../../lib/html');
+var CSSParser = require('../../lib/css');
+var styleTree = require('../../lib/style');
+var layoutTree = require('../../lib/layout');
 var Dimensions = require('../../lib/layout/dimensions');
 var Rect = require('../../lib/layout/rect');
 var EdgeSize = require('../../lib/layout/edge-size');

@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-var HTMLParser = require('../../lib/html/parser');
+var HTMLParser = require('../../lib/html');
 
 describe('html parser', function () {
     it('should parse <html> tags', function () {
