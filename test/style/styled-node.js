@@ -6,14 +6,6 @@ var Value = require('../../lib/css/value');
 var Display = require('../../lib/style/display');
 
 describe('styled node', function () {
-    it('should be instantiable', function () {
-        var element = new ElementNode('div', {foo: 'bar'}, []);
-        var styledNode = new StyledNode(element, {foo: 'bar'}, []);
-
-        expect(styledNode).to.have.property('node', element);
-        expect(styledNode.specifiedValues).to.eql({foo: 'bar'});
-        expect(styledNode.children).to.eql([]);
-    });
 
     describe('#value', function () {
         it('should return the specified value of a property', function () {
