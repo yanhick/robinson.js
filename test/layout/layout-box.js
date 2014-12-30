@@ -11,18 +11,6 @@ var Value = require('../../lib/css/value');
 var Unit = require('../../lib/css/unit');
 
 describe('layout box', function () {
-    it('should instantiate a layout box', function () {
-        var boxType = BoxType.Anonymous();
-        var rect = new Rect(0, 0, 0, 0);
-        var edge = new EdgeSize(10, 10, 10, 10);
-        var dimensions = new Dimensions(rect, edge, edge, edge);
-
-        var layoutBox = new LayoutBox(boxType, dimensions, []);
-        expect(layoutBox.dimensions).to.eql(dimensions);
-        expect(layoutBox.boxType).to.eql(boxType);
-        expect(layoutBox.children).to.eql([]);
-    });
-
     describe('#getStyleNode', function () {
         it('should allow to retrieve the styled node', function () {
             var boxType = BoxType.Block('foo');

@@ -5,18 +5,6 @@ var Rect = require('../../lib/layout/rect');
 var EdgeSize = require('../../lib/layout/edge-size');
 
 describe('dimensions', function () {
-    it('should instantiate dimensions', function () {
-        var rect = new Rect(0, 10, 20, 30);
-        var edge = new EdgeSize(40, 50, 60, 70);
-        var dimensions = new Dimensions(rect, edge, edge, edge);
-
-        expect(dimensions.content).to.eql(rect);
-        expect(dimensions.border).to.eql(edge);
-        expect(dimensions.padding).to.eql(edge);
-        expect(dimensions.margin).to.eql(edge);
-
-    });
-
     describe('#paddingBox', function () {
         it('should return the content area + padding box', function () {
             var rect = new Rect(0, 0, 0, 0);
