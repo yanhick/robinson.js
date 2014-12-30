@@ -62,7 +62,7 @@ describe('layout box', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var styledNode = new StyledNode(element, {
                 display: 'block',
-                height: new Value().Length(50, Unit.Px())
+                height: new Value().Length(50, new Unit().Px())
             }, []);
             var boxType = BoxType.Block(styledNode);
             var layoutBox = createLayoutBox(boxType);
@@ -115,7 +115,7 @@ describe('layout box', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var styledNode = new StyledNode(element, {
                 display: 'block',
-                width: new Value().Length(50, Unit.Px())
+                width: new Value().Length(50, new Unit().Px())
             }, []);
             var boxType = BoxType.Block(styledNode);
             var layoutBox = createLayoutBox(boxType, dimensions);
@@ -173,7 +173,7 @@ describe('layout box', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var styledNode = new StyledNode(element, {
                 display: 'block',
-                width: new Value().Length(100, Unit.Px()),
+                width: new Value().Length(100, new Unit().Px()),
                 'margin-left': new Value().Keyword('auto'),
                 'margin-right': new Value().Keyword('auto')
             }, []);
@@ -207,7 +207,7 @@ describe('layout box', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var styledNode = new StyledNode(element, {
                 display: 'block',
-                height: new Value().Length(50, Unit.Px())
+                height: new Value().Length(50, new Unit().Px())
             }, []);
             var boxType = BoxType.Block(styledNode);
             var layoutBox = createLayoutBox(boxType);

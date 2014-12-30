@@ -8,7 +8,7 @@ var Color = require('../../lib/css/color');
 describe('value', function () {
     describe('#toPx', function () {
         it('should return the size of a length in px', function () {
-            var length = new Value().Length(1.0, Unit.Px());
+            var length = new Value().Length(1.0, new Unit().Px());
 
             expect(length.toPx()).to.eql(1.0);
         });
