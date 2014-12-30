@@ -13,7 +13,7 @@ var Unit = require('../../lib/css/unit');
 describe('layout box', function () {
     describe('#getStyleNode', function () {
         it('should allow to retrieve the styled node', function () {
-            var boxType = BoxType.Block('foo');
+            var boxType = new BoxType().Block('foo');
             var rect = new Rect(0, 0, 0, 0);
             var edge = new EdgeSize(10, 10, 10, 10);
             var dimensions = new Dimensions(rect, edge, edge, edge);
@@ -26,21 +26,21 @@ describe('layout box', function () {
 
     describe('#getInlineContainer', function () {
         it('should return the layout box for inline box', function () {
-            var boxType = BoxType.Inline('foo');
+            var boxType = new BoxType().Inline('foo');
             var layoutBox = new LayoutBox(boxType);
 
             expect(layoutBox.getInlineContainer()).to.eql(layoutBox);
         });
 
         it('should return the layout box for anonymous box', function () {
-            var boxType = BoxType.Anonymous();
+            var boxType = new BoxType().Anonymous();
             var layoutBox = new LayoutBox(boxType);
 
             expect(layoutBox.getInlineContainer()).to.eql(layoutBox);
         });
 
         it('should create and return an anonymous block if there is none for a block box', function () {
-            var boxType = BoxType.Block('foo');
+            var boxType = new BoxType().Block('foo');
             var layoutBox = new LayoutBox(boxType);
 
             var inlineContainer = layoutBox.getInlineContainer();
@@ -48,7 +48,7 @@ describe('layout box', function () {
         });
 
         it('should return the last anonymous box for a block box', function () {
-            var boxType = BoxType.Block('foo');
+            var boxType = new BoxType().Block('foo');
             var children = [createLayoutBox(), createLayoutBox()];
             var layoutBox = new LayoutBox(boxType, undefined, children);
 
@@ -62,9 +62,9 @@ describe('layout box', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var styledNode = new StyledNode(element, {
                 display: 'block',
-                height: new Value().Length(50, Unit.Px())
+                height: new Value().Length(50, new Unit().Px())
             }, []);
-            var boxType = BoxType.Block(styledNode);
+            var boxType = new BoxType().Block(styledNode);
             var layoutBox = createLayoutBox(boxType);
 
             layoutBox.calculateBlockHeight();
@@ -115,9 +115,9 @@ describe('layout box', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var styledNode = new StyledNode(element, {
                 display: 'block',
-                width: new Value().Length(50, Unit.Px())
+                width: new Value().Length(50, new Unit().Px())
             }, []);
-            var boxType = BoxType.Block(styledNode);
+            var boxType = new BoxType().Block(styledNode);
             var layoutBox = createLayoutBox(boxType, dimensions);
 
             var containingEdgeSize = new EdgeSize(0, 0, 0, 0);
@@ -146,7 +146,7 @@ describe('layout box', function () {
             var styledNode = new StyledNode(element, {
                 display: 'block'
             }, []);
-            var boxType = BoxType.Block(styledNode);
+            var boxType = new BoxType().Block(styledNode);
             var layoutBox = createLayoutBox(boxType, dimensions);
 
             var containingEdgeSize = new EdgeSize(0, 0, 0, 0);
@@ -173,11 +173,11 @@ describe('layout box', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var styledNode = new StyledNode(element, {
                 display: 'block',
-                width: new Value().Length(100, Unit.Px()),
+                width: new Value().Length(100, new Unit().Px()),
                 'margin-left': new Value().Keyword('auto'),
                 'margin-right': new Value().Keyword('auto')
             }, []);
-            var boxType = BoxType.Block(styledNode);
+            var boxType = new BoxType().Block(styledNode);
             var layoutBox = createLayoutBox(boxType, dimensions);
 
             var containingEdgeSize = new EdgeSize(0, 0, 0, 0);
@@ -207,9 +207,9 @@ describe('layout box', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var styledNode = new StyledNode(element, {
                 display: 'block',
-                height: new Value().Length(50, Unit.Px())
+                height: new Value().Length(50, new Unit().Px())
             }, []);
-            var boxType = BoxType.Block(styledNode);
+            var boxType = new BoxType().Block(styledNode);
             var layoutBox = createLayoutBox(boxType);
 
             var containingEdgeSize = new EdgeSize(0, 0, 0, 0);
@@ -234,7 +234,7 @@ function createLayoutBox (boxType, dimensions, children) {
     var styledNode = new StyledNode(element, {
         display: new Value().Keyword('block')
     }, []);
-    boxType = boxType || BoxType.Block(styledNode);
+    boxType = boxType || new BoxType().Block(styledNode);
     var rect = new Rect(0, 0, 0, 0);
     var edge = new EdgeSize(10, 10, 10, 10);
     dimensions = dimensions || new Dimensions(rect, edge, edge, edge);

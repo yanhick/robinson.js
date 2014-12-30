@@ -54,13 +54,13 @@ describe('styled node', function () {
             };
             var styledNode = new StyledNode(element, specifiedValues, []);
 
-            expect(styledNode.display()).to.eql(Display.Block());
+            expect(styledNode.display()).to.eql(new Display().Block());
         });
         it('the display value should default to inline if missing', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var styledNode = new StyledNode(element, {}, []);
 
-            expect(styledNode.display()).to.eql(Display.Inline());
+            expect(styledNode.display()).to.eql(new Display().Inline());
         });
     });
 });
