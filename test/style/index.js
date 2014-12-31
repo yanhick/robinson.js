@@ -22,9 +22,17 @@ describe('style tree', function () {
         expect(styledTree.specifiedValues.bar.value).to.eql('foo');
     });
 
-    it('should ignore node not matching a selector', function () {
+    it('should ignore node not matching a class selector', function () {
         var rootElement = new HTMLParser().parse('<html></html>');
         var stylesheet = new CSSParser().parse('.not-matched {foo: bar;}');
+        var styledTree = styleTree(rootElement, stylesheet);
+
+        expect(styledTree.specifiedValues.foo).to.not.exists;
+    });
+
+    it('should ignore node not matching an id selector', function () {
+        var rootElement = new HTMLParser().parse('<html></html>');
+        var stylesheet = new CSSParser().parse('#not-matched {foo: bar;}');
         var styledTree = styleTree(rootElement, stylesheet);
 
         expect(styledTree.specifiedValues.foo).to.not.exists;
@@ -43,8 +51,4 @@ describe('style tree', function () {
         expect(styledTree.specifiedValues.foo.type).to.eql('keyword');
         expect(styledTree.specifiedValues.foo.value).to.eql('bar');
     });
-
-    it('should style a dom tree');
-    it('should match dom nodes with css rules');
-    it('should take care of property specificity');
 });
