@@ -47,7 +47,7 @@ describe('styled node', function () {
     });
 
     describe('#display', function () {
-        it('should return the value of the display property', function () {
+        it('should return the value of the display property for block', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var specifiedValues = {
                 display: new Value().Keyword('block')
@@ -56,6 +56,27 @@ describe('styled node', function () {
 
             expect(styledNode.display()).to.eql(new Display().Block());
         });
+
+        it('should return the value of the display property for none', function () {
+            var element = new ElementNode('div', {foo: 'bar'}, []);
+            var specifiedValues = {
+                display: new Value().Keyword('none')
+            };
+            var styledNode = new StyledNode(element, specifiedValues, []);
+
+            expect(styledNode.display()).to.eql(new Display().None());
+        });
+
+        it('should return the value of the display property for inline', function () {
+            var element = new ElementNode('div', {foo: 'bar'}, []);
+            var specifiedValues = {
+                display: new Value().Keyword('inline')
+            };
+            var styledNode = new StyledNode(element, specifiedValues, []);
+
+            expect(styledNode.display()).to.eql(new Display().Inline());
+        });
+
         it('the display value should default to inline if missing', function () {
             var element = new ElementNode('div', {foo: 'bar'}, []);
             var styledNode = new StyledNode(element, {}, []);
