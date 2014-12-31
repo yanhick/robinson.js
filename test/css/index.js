@@ -107,6 +107,7 @@ describe('css parser', function () {
         expect(declaration.value).to.have.property('type', 'keyword');
         expect(declaration.value).to.have.property('value', 'bar');
     });
+
     it('should parse length value', function () {
         var stylesheet = new CSSParser().parse('div {foo:10px;}');
 
@@ -134,6 +135,24 @@ describe('css parser', function () {
             g: 255,
             b: 0,
             a: 255
+        });
+    });
+
+    it('should parse comma separated selectors', function () {
+        var stylesheet = new CSSParser().parse('div, p {foo:bar;}');
+
+        expect(stylesheet.rules[0].selectors[0].type).to.eql('simple');
+        expect(stylesheet.rules[0].selectors[0].value).to.eql({
+            tagName: 'div',
+            id: null,
+            className: []
+        });
+
+        expect(stylesheet.rules[0].selectors[1].type).to.eql('simple');
+        expect(stylesheet.rules[0].selectors[1].value).to.eql({
+            tagName: 'p',
+            id: null,
+            className: []
         });
     });
 });
