@@ -65,8 +65,19 @@ describe('css parser', function () {
         });
     });
 
-    it('should parse universal selector', function () {
+    it('should parse universal selector without *', function () {
         var stylesheet = new CSSParser().parse('{foo:bar;}');
+
+        expect(stylesheet.rules[0].selectors[0].type).to.eql('simple');
+        expect(stylesheet.rules[0].selectors[0].value).to.eql({
+            tagName: null,
+            id: null,
+            className: []
+        });
+    });
+
+    it('should parse universal selector with *', function () {
+        var stylesheet = new CSSParser().parse('* {foo:bar;}');
 
         expect(stylesheet.rules[0].selectors[0].type).to.eql('simple');
         expect(stylesheet.rules[0].selectors[0].value).to.eql({
