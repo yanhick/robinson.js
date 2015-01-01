@@ -54,4 +54,25 @@ describe('layout tree', function () {
         expect(laidoutTree.children[0].dimensions.border.left).to.eql(10);
         expect(laidoutTree.children[0].dimensions.border.right).to.eql(10);
     });
+
+    it('should create a layout tree from a styled node with inline children', function () {
+        var rootElement = new HTMLParser().parse('<html><body></body></html>');
+        var stylesheet = new CSSParser().parse('html {display: block;} body {display: inline;}');
+        var styledTree = styleTree(rootElement, stylesheet);
+
+        laidoutTree = layoutTree(styledTree, new Dimensions(
+            new Rect(0, 0, 200, 100),
+            new EdgeSize(0, 0, 0, 0),
+            new EdgeSize(0, 0, 0, 0),
+            new EdgeSize(0, 0, 0, 0)
+        ));
+
+        expect(laidoutTree.dimensions.content.width).to.eql(200);
+        expect(laidoutTree.dimensions.content.height).to.eql(0);
+
+        expect(laidoutTree.children[0].dimensions.content.x).to.eql(0);
+        expect(laidoutTree.children[0].dimensions.content.y).to.eql(0);
+        expect(laidoutTree.children[0].dimensions.content.width).to.eql(0);
+        expect(laidoutTree.children[0].dimensions.content.height).to.eql(0);
+    });
 });
