@@ -298,6 +298,41 @@ describe('layout box', function () {
             expect(layoutBox.dimensions.margin.right).to.eql(0);
             expect(layoutBox.dimensions.margin.left).to.eql(0);
         });
+
+        it('should make right margin negative if the width was going to be negative', function () {
+            var edgeSize = new EdgeSize(0, 0, 0, 0);
+            var dimensions = new Dimensions(
+                new Rect(0, 0, 0, 0),
+                edgeSize,
+                edgeSize,
+                edgeSize
+            );
+            var element = new ElementNode('div', {foo: 'bar'}, []);
+            var styledNode = new StyledNode(element, {
+                display: 'block',
+                width: new Value().Keyword('auto'),
+                'margin-right': new Value().Length(100, new Unit().Px()),
+                'margin-left': new Value().Length(200, new Unit().Px())
+            }, []);
+            var boxType = new BoxType().Block(styledNode);
+            var layoutBox = createLayoutBox(boxType, dimensions);
+
+            var containingEdgeSize = new EdgeSize(0, 0, 0, 0);
+            var containingDimensions = new Dimensions(
+                new Rect(0, 0, 100, 0),
+                containingEdgeSize,
+                containingEdgeSize,
+                containingEdgeSize
+            );
+            var containingLayoutBox = createLayoutBox(undefined, containingDimensions);
+
+            layoutBox.calculateBlockWidth(containingLayoutBox.dimensions);
+
+            expect(layoutBox.dimensions.content.width).to.eql(0);
+            expect(layoutBox.dimensions.margin.right).to.eql(-100);
+            expect(layoutBox.dimensions.margin.left).to.eql(200);
+
+        });
     });
 
     describe('#layoutBlockChildren', function () {
