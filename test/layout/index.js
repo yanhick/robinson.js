@@ -16,7 +16,7 @@ describe('layout tree', function () {
         var stylesheet = new CSSParser().parse('{display: block;} body {width: 100px; height: 50px;}');
         var styledTree = styleTree(rootElement, stylesheet);
 
-        laidoutTree = layoutTree(styledTree, new Dimensions(
+        var laidoutTree = layoutTree(styledTree, new Dimensions(
             new Rect(0, 0, 200, 100),
             new EdgeSize(0, 0, 0, 0),
             new EdgeSize(0, 0, 0, 0),
@@ -35,7 +35,7 @@ describe('layout tree', function () {
         var stylesheet = new CSSParser().parse('{display: block;} body {width: 100px; height: 50px; border-width:10px;}');
         var styledTree = styleTree(rootElement, stylesheet);
 
-        laidoutTree = layoutTree(styledTree, new Dimensions(
+        var laidoutTree = layoutTree(styledTree, new Dimensions(
             new Rect(0, 0, 200, 100),
             new EdgeSize(0, 0, 0, 0),
             new EdgeSize(0, 0, 0, 0),
@@ -60,7 +60,7 @@ describe('layout tree', function () {
         var stylesheet = new CSSParser().parse('html {display: block;} body {display: inline;}');
         var styledTree = styleTree(rootElement, stylesheet);
 
-        laidoutTree = layoutTree(styledTree, new Dimensions(
+        var laidoutTree = layoutTree(styledTree, new Dimensions(
             new Rect(0, 0, 200, 100),
             new EdgeSize(0, 0, 0, 0),
             new EdgeSize(0, 0, 0, 0),
