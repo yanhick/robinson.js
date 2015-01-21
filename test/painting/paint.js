@@ -16,7 +16,7 @@ describe('paint', function () {
         var stylesheet = new CSSParser().parse('{display: block;} body {background: #FF0000; width: 1px; height: 1px;}');
         var styledTree = styleTree(rootElement, stylesheet);
 
-        laidoutTree = layoutTree(styledTree, new Dimensions(
+        var laidoutTree = layoutTree(styledTree, new Dimensions(
             new Rect(0, 0, 1, 1),
             new EdgeSize(0, 0, 0, 0),
             new EdgeSize(0, 0, 0, 0),
@@ -40,7 +40,7 @@ describe('paint', function () {
         var stylesheet = new CSSParser().parse('{display: block;} body {border-color: #FF0000; border-left-width: 1px; width: 1px; height: 2px;}');
         var styledTree = styleTree(rootElement, stylesheet);
 
-        laidoutTree = layoutTree(styledTree, new Dimensions(
+        var laidoutTree = layoutTree(styledTree, new Dimensions(
             new Rect(0, 0, 2, 2),
             new EdgeSize(0, 0, 0, 0),
             new EdgeSize(0, 0, 0, 0),
