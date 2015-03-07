@@ -7,6 +7,5 @@ before_script:
 script:
     - npm run-script lint
     - npm test
-    - npm run-script test-run
 after_success:
     - npm run-script coverage
